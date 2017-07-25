@@ -1,0 +1,11 @@
+{% extends "admin/base.html"%}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}New Election{% endblock %}
+{% block content %}
+ <div class="page-header">
+    <h1>New Election</h1>
+ </div>
+ <div class="col-md-4">
+   {{ wtf.quick_form(form) }}
+ </div>
+ {% endblock %}

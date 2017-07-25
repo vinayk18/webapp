@@ -1,0 +1,27 @@
+{% extends "admin/base.html"%}
+{%block content%}
+<div class="container">
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning">
+<button type="button" class="close" data-dismiss="alert">&times;</button>
+{{ message }}
+</div>
+{% endfor %}
+
+<p>
+ {% if branches%}
+{% for branch in branches %} 
+<ul>
+<li>
+<h4>The Election of {{branch.name}} of semester {{branch.semester}} is on {{branch.Date}} <a class = "btn btn-default" href="{{url_for('admin.view_election',branch = branch.name,semester = branch.semester)}}"> View </a></h4></li></ul>
+ {% endfor%}
+ {% else %}
+ sorry there are no elections going on yet
+ {% endif %}
+ 
+ 
+<br><br><br>
+<a class = "btn btn-default" href = "{{url_for('admin.new_election')}}">Conduct New CR Election</a> 
+ 
+ </p>
+{% endblock %}
