@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %} 
+<div class="container">
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning">
+<button type="button" class="close" data-dismiss="alert">&times;</button>
+{{ message }}
+</div>
+{% endfor %}
+
+<div class="page-header">
+	<h2>Profile </h2>
+</div>
+<div class = "col-md-8">
+{% if user.is_authenticated %}
+<p><b><em>Name</b></em> &emsp;&emsp;&emsp;&emsp; &emsp; &emsp;{{user.username}}<br></p>
+<p><b><em>Email ID</b></em> &emsp;&emsp;&emsp;&emsp;&emsp;    {{user.email}}<br></p>
+<p><b><em>Branch </b></em>&emsp;&emsp;&emsp;&emsp;&emsp;   {{user.branch}}<br></p>
+<p><b><em>Semester</b></em> &emsp;&emsp;&emsp;&emsp;       {{user.semester}}<br></p>
+<p><b><em>Scholar ID</b></em>&emsp;&emsp;&emsp;&emsp;      {{user.s_no}}<br></p>
+{% endif %}
+</div>
+<div class ="container" align = "center">
+{% if current_user %}
+<a class="btn btn-default" href="{{ url_for('auth.edit_profile') }}">Edit Profile</a>
+{% endif %}
+</div>
+{% endblock %}

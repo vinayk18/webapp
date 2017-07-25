@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %} 
+<div class="page-header">
+	<h1>Elections</h1>
+</div>
+<div class="container">
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning">
+<button type="button" class="close" data-dismiss="alert">&times;</button>
+{{ message }}
+</div>
+{% endfor %}
+</div>
+<div class = "col-md-8">
+{% if current_user.is_authenticated %}
+{% if list%}
+<p>
+{% for iter in list %} 
+<ul>
+<li>
+<h4>The candidate is <b><em>{{iter.name}}</em></b> of <b><em>{{iter.branch}}</b></em> <b><em> Semester -{{iter.sem}}</b></em>  Scholar ID <b><em>{{iter.sid}}</b></em></h4> <a class="btn btn-default" href="{{url_for('auth.vote',voter = current_user.s_no,candidate = iter.sid)}}">
+Vote
+</a></li></ul>
+{% endfor %}
+</p>
+{% else %}
+sorry there are no elections going on yet 
+{% endif %}
+<a class="btn btn-default" href="{{url_for('auth.view_results',branch = current_user.branch,semester = current_user.semester)}}">View Result </a>
+{% endif %}
+</div>
+{% endblock %}
